@@ -11,7 +11,7 @@ func NewShellSorter() *ShellSorter {
 }
 
 func (s *ShellSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 
 	for d := s.Step(len(result)); d != 0; d = s.Step(d) {
 		for i := d; i < len(result); i += d {

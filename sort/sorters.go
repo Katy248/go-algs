@@ -7,7 +7,7 @@ type Sorter interface {
 type ExchangeSorter struct{}
 
 func (_ *ExchangeSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 	for i := 0; i < len(result); i++ {
 		for j := i; j < len(result); j++ {
 			if result[i] > result[j] {
@@ -21,7 +21,7 @@ func (_ *ExchangeSorter) Sort(source []int32) (result []int32) {
 type SelectionSorter struct{}
 
 func (*SelectionSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 	for i := 0; i < len(result); i++ {
 		minIndex := i
 		for j := i; j < len(result); j++ {
@@ -37,7 +37,7 @@ func (*SelectionSorter) Sort(source []int32) (result []int32) {
 type BubbleSorter struct{}
 
 func (*BubbleSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 	for i := 0; i < len(result); i++ {
 		for j := 0; j < len(result)-1; j++ {
 			if result[j+1] < result[j] {
@@ -51,7 +51,7 @@ func (*BubbleSorter) Sort(source []int32) (result []int32) {
 type InsertionSorter struct{}
 
 func (*InsertionSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 	for i := 1; i < len(result); i++ {
 		if result[i] < result[i-1] {
 			for j := i; j > 0 && result[j] < result[j-1]; j-- {
@@ -65,7 +65,7 @@ func (*InsertionSorter) Sort(source []int32) (result []int32) {
 type ShakerSorter struct{}
 
 func (*ShakerSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 
 	left := 1
 	right := len(result) - 1
@@ -91,7 +91,7 @@ func (*ShakerSorter) Sort(source []int32) (result []int32) {
 type CombSorter struct{}
 
 func (*CombSorter) Sort(source []int32) (result []int32) {
-	result = copyArray(source)
+	result = source
 	gap := len(result)
 	shrink := 1.3
 

@@ -33,10 +33,11 @@ func main() {
 
 func printSortedArray(title string, sorter s.Sorter, array []int32) {
 
-	println()
-	println(title, ":")
+	fmt.Println()
+  fmt.Printf("%s:\n", title)
+  arrCopy := s.CopyArray(array) 
 	start := time.Now()
-	sortedArray := sorter.Sort(array)
+	sortedArray := sorter.Sort(arrCopy)
 	takenTime := time.Since(start)
 	fmt.Println("Sorted array (with time", takenTime, ")\n", sortedArray)
 }
