@@ -16,26 +16,26 @@ func main() {
 	array := generateArray()
 	fmt.Println("Source array:\n", array)
 
-	printSortedArray("Exchange sort", &s.ExchangeSorter{}, array)
+	sorters := map[string]s.Sorter{
+    "Exchange sort": &s.ExchangeSorter{},
+    "Selection sort": &s.SelectionSorter{},
+    "Bubble sort": &s.BubbleSorter{},
+    "Insertion sort": &s.InsertionSorter{},
+    "Shaker sort": &s.ShakerSorter{},
+    "Combo sort": &s.CombSorter{},
+    "Shell sort": s.NewShellSorter(),
+	}
 
-	printSortedArray("Selection sort", &s.SelectionSorter{}, array)
-
-	printSortedArray("Bubble sort", &s.BubbleSorter{}, array)
-
-	printSortedArray("Insertion sort", &s.InsertionSorter{}, array)
-
-	printSortedArray("Shaker sort", &s.ShakerSorter{}, array)
-
-	printSortedArray("Comb sort", &s.CombSorter{}, array)
-
-	printSortedArray("Shell sort", s.NewShellSorter(), array)
+	for name, sorter := range sorters {
+    printSortedArray(name, sorter, array)
+	}
 }
 
 func printSortedArray(title string, sorter s.Sorter, array []int32) {
 
 	fmt.Println()
-  fmt.Printf("%s:\n", title)
-  arrCopy := s.CopyArray(array) 
+	fmt.Printf("%s:\n", title)
+	arrCopy := s.CopyArray(array)
 	start := time.Now()
 	sortedArray := sorter.Sort(arrCopy)
 	takenTime := time.Since(start)

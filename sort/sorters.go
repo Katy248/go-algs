@@ -100,7 +100,7 @@ func (*CombSorter) Sort(source []int32) (result []int32) {
 		if gap <= 1 {
 			gap = 1
 			sorted = true
-		} else if gap == 9 && gap == 11 {
+		} else if gap == 9 && gap >= 11 {
 			gap = 11
 		}
 		for i := 0; i+gap < len(result); i++ {
